@@ -8,7 +8,6 @@ import { TapListComponent } from './tap-list.component';
   // inputs: ['onKegTapped'],
   template: `
     <keg-list (onKegTapped)="tapKegEvent($event)"[kegList]="kegs" ></keg-list>
-    <tap-list [tappedKegs]="tappedKegs"></tap-list>
   `
 })
 export class AppComponent {

@@ -9,6 +9,8 @@ import { TappedPipe } from './tapped.pipe';
   directives: [KegDisplayComponent],
   pipes: [TappedPipe],
   template: `
+  <h1>Taplist:</h1>
+  <keg-display *ngFor="#currentKeg of kegList | tapped:filterTapped" [keg]="currentKeg"></keg-display>
   <h1>Storeroom:</h1>
   <keg-display *ngFor="#currentKeg of kegList | tapped:filterUntapped" [keg]="currentKeg"></keg-display>
   `
@@ -16,4 +18,5 @@ import { TappedPipe } from './tapped.pipe';
 export class KegListComponent {
   public kegList: Keg[];
   public filterUntapped: boolean = false;
+  public filterTapped: boolean = true;
 }
