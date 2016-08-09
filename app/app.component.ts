@@ -5,7 +5,9 @@ import { KegListComponent } from './keg-list.component';
   selector: 'my-app',
   directives: [KegListComponent],
   template: `
+  <div class="container">
     <keg-list (onKegTapped)="tapKegEvent($event)"[kegList]="kegs" ></keg-list>
+  </div>
   `
 })
 export class AppComponent {

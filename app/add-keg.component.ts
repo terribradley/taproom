@@ -3,13 +3,16 @@ import { Keg } from './keg.model';
 
 @Component ({
   selector: 'add-keg',
+  outputs: ['onSubmitNewKeg'],
   template:`
-  <div class='keg-form'>
-  <input placeholder="Name" #newName>
-  <input placeholder="Brand" #newBrand>
-  <input placeholder="ABV" #newAlchoholByVolume>
-  <input placeholder="Price" #newPrice>
-  <button (click)="addKeg(newName, newBrand, newAlchoholByVolume, newPrice)">Add</button>
+  <h1 class="text-center">Add New Keg</h1>
+  <div class='keg-form form-group'>
+    <input placeholder="Name" #newName>
+    <input placeholder="Brand" #newBrand>
+    <input placeholder="ABV" #newAlchoholByVolume>
+    <input placeholder="Price" #newPrice>
+    <button (click)="addKeg(newName, newBrand, newAlchoholByVolume, newPrice)">Add</button>
+  </div>
   `
 
 })
@@ -21,7 +24,11 @@ export class AddKegComponent {
   }
   addKeg(newName: HTMLInputElement, newBrand: HTMLInputElement, newAlchoholByVolume: HTMLInputElement, newPrice: HTMLInputElement) {
     var newKeg = new Keg(newName.value, newBrand.value, parseInt(newAlchoholByVolume.value), parseInt(newPrice.value));
+    newName.value = "";
+    newBrand.value="";
+    newAlchoholByVolume.value="";
+    newPrice.value="";
+
     this.onSubmitNewKeg.emit(newKeg);
   }
-
 }

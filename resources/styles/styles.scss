@@ -21,3 +21,45 @@
 button, input, label {
   color: black;
 }
+button {
+  background-color: white;
+  border: 2px solid #6B561D;
+  padding: 10px;
+  margin-top: 10px;
+  &:hover {
+    background-color: #858179;
+  }
+}
+.tap-list, .storeroom, .emptied {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.keg {
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+  border-radius: 5px;
+  margin: 15px;
+  padding: 10px;
+  width: 300px;
+  height: 300px;
+}
+
+h3 {
+  margin: 5px;
+}
+
+.keg-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+
+  input {
+    width: 30%;
+    margin: 3px;
+    height: 30px;
+  }
+}
