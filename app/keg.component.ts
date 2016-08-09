@@ -1,9 +1,11 @@
 import { Component, EventEmitter } from 'angular2/core';
 import { Keg } from './keg.model';
+import { EditKegComponent } from './edit-keg.component';
 
 @Component({
   selector: 'keg-display',
   inputs: ['keg'],
+  directives: [EditKegComponent],
   template: `
   <div [class.almost-empty]="keg.pintsLeft <= 10">
     <h3>{{keg.brand}} - {{keg.name}}</h3>
@@ -12,15 +14,22 @@ import { Keg } from './keg.model';
     <h4 *ngIf="keg.isTapped">Number of Pints Left: {{keg.pintsLeft}}</h4>
     <button *ngIf="!keg.isTapped" (click)="tapKeg()">Tap it!</button>
     <button *ngIf="keg.isTapped" (click)="pourPint()">Pour Pint</button>
+    <button *ngIf="!beingEdited" (click)="toggleEditKeg()">Edit</button>
+    <button *ngIf="beingEdited" (click)="toggleEditKeg()">Done</button>
+    <edit-keg *ngIf="beingEdited" [keg]="keg"></edit-keg>
   </div>
   `
 })
 export class KegDisplayComponent {
   public keg: Keg;
+  public beingEdited: boolean = false;
   tapKeg() {
     this.keg.tap();
   };
   pourPint() {
     this.keg.pintsLeft--;
+  }
+  toggleEditKeg() {
+    this.beingEdited = (!this.beingEdited);
   }
 }
