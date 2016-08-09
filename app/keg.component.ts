@@ -5,26 +5,22 @@ import { Keg } from './keg.model';
   selector: 'keg-display',
   inputs: ['keg'],
   template: `
-  <div>
+  <div [class.almost-empty]="keg.pintsLeft <= 10">
     <h3>{{keg.brand}} - {{keg.name}}</h3>
-    <h4>ABV: {{keg.alchoholByVolume}} - Price: {{keg.price}}</h4>
+    <h4 *ngIf="keg.pintsLeft <= 10">WARNING: This keg is almost empty</h4>
+    <h4>ABV: {{keg.alchoholByVolume}} - Price per Pint: \${{keg.price}}</h4>
     <h4 *ngIf="keg.isTapped">Number of Pints Left: {{keg.pintsLeft}}</h4>
-    <button *ngIf="!keg.isTapped" >Tap it!</button>
-    <button *ngIf ="keg.isTapped">It's already Tapped!</button>
+    <button *ngIf="!keg.isTapped" (click)="tapKeg()">Tap it!</button>
+    <button *ngIf="keg.isTapped" (click)="pourPint()">Pour Pint</button>
   </div>
   `
 })
 export class KegDisplayComponent {
   public keg: Keg;
-  // public onKegTapped: EventEmitter<Keg>;
-  // constructor() {
-  //   this.onKegTapped = new EventEmitter();
-  // }
-  // tapKeg(){
-  //   console.log(this.keg);
-  //   this.onKegTapped.emit(this.keg);
-  // };
-
-
-  // (click) = "tapKeg(keg)"
+  tapKeg() {
+    this.keg.tap();
+  };
+  pourPint() {
+    this.keg.pintsLeft--;
+  }
 }
