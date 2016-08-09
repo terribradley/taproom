@@ -1,4 +1,4 @@
-* I want to see what kegs I have available. For each keg, I need to see its name, brand, price and alcohol content.
+
 * Distinguish between tapped/untapped
 * I want to fill out a form when I tap a new keg to create a display for it.
 * I want to see a display of how many pints are left in a keg. A full keg has 124 pints in it.. I want to be able to click a button on a display of a keg whenever I sell a pint of that kind of beer and have the display of how many pints are left decrease by 1.
