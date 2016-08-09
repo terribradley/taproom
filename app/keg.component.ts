@@ -10,7 +10,14 @@ import { EditKegComponent } from './edit-keg.component';
   <div [class.almost-empty]="keg.pintsLeft <= 10">
     <h3>{{keg.brand}} - {{keg.name}}</h3>
     <h4 *ngIf="keg.pintsLeft <= 10">WARNING: This keg is almost empty</h4>
-    <h4>ABV: {{keg.alchoholByVolume}} - Price per Pint: \${{keg.price}}</h4>
+    <h4><span
+      [class.high-abv]="keg.alchoholByVolume > 6"
+      [class.low-abv]="keg.alchoholByVolume <= 6">
+      ABV: {{keg.alchoholByVolume}}</span>
+     - <span
+      [class.cheap] ="keg.price <=3"
+      [class.expensive]="keg.price >3">
+      Price per Pint: \${{keg.price}}</span></h4>
     <h4 *ngIf="keg.isTapped">Number of Pints Left: {{keg.pintsLeft}}</h4>
     <button *ngIf="!keg.isTapped" (click)="tapKeg()">Tap it!</button>
     <button *ngIf="keg.isTapped" (click)="pourPint()">Pour Pint</button>
